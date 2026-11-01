@@ -13,6 +13,9 @@ jobs:
       - name: Unzip project
         run: unzip -q tunaVPN.zip
 
+      - name: Patch SockUtil
+        run: sed -i 's/Os.getsockoptInt(pfd.fileDescriptor, IPPROTO_IP, IP_TTL)/64/' tunaVPN/app/src/main/java/com/tunavpn/app/net/SockUtil.kt
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
